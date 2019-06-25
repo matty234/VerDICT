@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: svc-search-proxy
+    labels:
+        aspect: search-proxy
+    namespace: verdict
+spec:
+    type: ClusterIP
+    clusterIP: None
+    ports:
+        -
+            port: 8040
+            targetPort: 8040
+            protocol: TCP
+            name: http
+    selector:
+        aspect: search-proxy

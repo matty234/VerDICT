@@ -1,0 +1,36 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    labels:
+        name: diseases-deployment
+    name: diseases-deployment
+    namespace: verdict
+spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        aspect: diseases
+    template:
+        metadata:
+          labels:
+            aspect: diseases
+        spec:
+            containers:
+                -
+                    name: diseases
+                    image: 'browninc.azurecr.io/verdict-diseases:0.0.1'
+                    imagePullPolicy: Always
+                    ports:
+                        - containerPort: 8010
+                          protocol: TCP
+                    env:
+                        - name: DB_URI
+                          value: "bolt://svc-db.verdict:7687"
+                        - name: PORT
+                          value: "8010"
+                        - name: HTTP_ROOT
+                          value: "/__/phenotype"
+                        - name: DB_USER
+                          value: "neo4j"
+                        - name: DB_PASSWORD
+                          value: "neo4j"

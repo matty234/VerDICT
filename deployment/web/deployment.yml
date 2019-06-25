@@ -1,0 +1,26 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    labels:
+        name: web-deployment
+        app: web-deployment
+    name: web-deployment
+    namespace: verdict
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            aspect: web
+    template:
+        metadata:
+            labels:
+                aspect: web
+        spec:
+            containers:
+                -
+                    name: web
+                    image: 'browninc.azurecr.io/verdict-web:latest'
+                    ports:
+                        - 
+                            containerPort: 80
+                            name: http

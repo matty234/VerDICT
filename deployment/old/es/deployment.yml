@@ -1,0 +1,43 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    labels:
+        name: es-deployment
+    name: es-deployment
+    namespace: verdict
+spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        aspect: search
+    template:
+        metadata:
+            name: search
+            labels:
+              aspect: search
+        spec:
+            initContainers:
+                - name: init-sysctl
+                  image: busybox:1.27.2
+                  command:
+                      - sysctl
+                      - -w
+                      - vm.max_map_count=262144
+                  env:
+                      - name: ES_JAVA_OPTS
+                        value: -Xms2g -Xmx2g
+                      - name: bootstrap.memory_lock
+                        value: "true"
+                  securityContext:
+                    privileged: true
+            containers:
+                -
+                    name: search
+                    image: 'browninc.azurecr.io/verdict-elasticsearch:latest'
+                    ports:
+                        - name: es-query
+                          protocol: TCP
+                          containerPort: 9200
+                        - name: es-master
+                          protocol: TCP
+                          containerPort: 9300

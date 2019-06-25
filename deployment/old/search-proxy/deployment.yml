@@ -1,0 +1,32 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: search-proxy-deployment
+    namespace: verdict
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+          aspect: search-proxy
+    template:
+        metadata:
+          labels: 
+            aspect: search-proxy
+        spec:
+            containers:
+                -
+                    name: search-proxy
+                    image: 'browninc.azurecr.io/verdict-searchproxy:latest'
+                    imagePullPolicy: Always
+                    ports:
+                        - containerPort: 8040
+                          protocol: TCP
+                    env:
+                        - name: ELASTICSEARCH_HOSTNAME
+                          value: "svc-es.verdict"
+                        - name: PORT
+                          value: "8040"
+                        - name: ELASTICSEARCH_PORT
+                          value: "9200"
+                        - name: HTTP_ROOT
+                          value: "/__/search"

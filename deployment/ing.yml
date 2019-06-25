@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: web
+    namespace: verdict
+    annotations:
+        kubernetes.io/ingress.class: nginx
+        ingress.kubernetes.io/rewrite-target: /
+        certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+        nginx.ingress.kubernetes.io/service-upstream: "true"
+spec:
+    tls:
+        - hosts:
+          - uks.verdict.genericname.dev
+          secretName: letsencrypt-prod
+    rules:
+        - host: 'uks.verdict.genericname.dev'
+          http:
+                paths:
+                    -
+                        path: /
+                        backend:
+                            serviceName: svc-web
+                            servicePort: 8001
+                    -
+                        path: /__/phenotype
+                        backend:
+                            serviceName: svc-diseases
+                            servicePort: 8010
+                    -
+                        path: /__/gene
+                        backend:
+                            serviceName: svc-genes
+                            servicePort: 8080
+                    -
+                        path: /__/search
+                        backend:
+                            serviceName: svc-search-proxy
+                            servicePort: 8040
+                    -
+                        path: /__/graph
+                        backend:
+                            serviceName: svc-graph
+                            servicePort: 8050

@@ -1,0 +1,35 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    labels:
+        name: graph-deployment
+    name: graph-deployment
+    namespace: verdict
+spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        aspect: graph
+    template:
+        metadata:
+          labels:
+            aspect: graph
+        spec:
+            containers:
+                -
+                    name: graph
+                    image: 'browninc.azurecr.io/verdict-graph:0.0.1'
+                    ports:
+                        - containerPort: 8050
+                          protocol: TCP
+                    env:
+                        - name: DB_URI
+                          value: "bolt://svc-db.verdict:7687"
+                        - name: PORT
+                          value: "8050"
+                        - name: HTTP_ROOT
+                          value: "/__/graph"
+                        - name: DB_USER
+                          value: "neo4j"
+                        - name: DB_PASSWORD
+                          value: "neo4j"
