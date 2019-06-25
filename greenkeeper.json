@@ -1,0 +1,10 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "services/verdict-graph-proxy/package.json",
+        "services/verdict-web/package.json"
+      ]
+    }
+  }
+}
