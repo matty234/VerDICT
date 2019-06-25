@@ -1,0 +1,7 @@
+<div class="wrapper">
+	<app-phenotype *ngIf="((selectedViewType|async) === viewTypes.PHENOTYPE)" [selectedPhenotype]="selectedParam">
+	</app-phenotype>
+	<app-gene *ngIf="((selectedViewType|async) === viewTypes.GENE)" [selectedGene]="selectedParam"></app-gene>
+	<app-pathway-list *ngIf="((selectedViewType|async) === viewTypes.PATHWAY)" [selectedPathway]="selectedParam">
+	</app-pathway-list>
+</div>

@@ -1,0 +1,12 @@
+<app-search-bar selectedSearchType="PATHWAY" class="search-bar" [initialValue]="selectedPathway|async">
+		<div class="actions">
+				<button mat-stroked-button color="accent" (click)="addToShelf()"><mat-icon class="add-to-shelf-icon">add</mat-icon> Add to Shelf</button>
+		</div>
+</app-search-bar>
+<app-expandable-table type="gene" [items]="genes" title="Associated Genes">
+		<ng-container *appGeneItem="let item">
+				<app-gene-name [gene]="item">
+					<a [href]="getContextURL(item.entrez)|async" class="open-kegg-button" target="_blank" mat-stroked-button color="primary">KEGG Visualisation</a>
+				</app-gene-name>
+			</ng-container>
+</app-expandable-table>

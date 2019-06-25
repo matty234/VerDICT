@@ -1,0 +1,59 @@
+
+.stepper-card {
+	user-select: none;
+	margin-top: 10px;
+}
+
+.suggestions {
+	flex-shrink: 1;
+}
+
+
+.import-title {
+  font-weight: 500;
+}
+
+.import-option {
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: auto auto auto auto;
+}
+.import-button {
+		user-select: none;
+		cursor: pointer;
+		outline: none;
+		padding: 10px 0;
+    &:hover {
+      background-color: #e6e6e6;
+		}
+		&:active {
+      background-color: #dadada;
+		}
+		&-arrow-right {
+			margin-right: 0;
+			margin-left: auto;
+		}
+
+}
+.finished-container {
+	padding: 15px 0;
+	text-align: center;
+	&-icon {
+		display: inline;
+		font-size: 40pt;
+		color: #ababab;
+	}
+}
+	::ng-deep .mat-vertical-stepper-header{
+			pointer-events: none !important;
+	}
+
+.import-view {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.result-string {
+	padding: 10px;
+	color: #797979;
+}

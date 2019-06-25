@@ -1,0 +1,68 @@
+<mat-tab-group>
+
+	<mat-tab label="Gene Groups">
+		<div class="grid" id="grid">
+			<mat-form-field>
+
+				<mat-select [(ngModel)]="selectedUID">
+					<mat-option *ngFor="let shelfPhenotype of shelfPhenotypes" [value]="shelfPhenotype.uid">
+						<div class="phenotypeColorHint" [style.backgroundColor]="shelfPhenotype.colour"></div>
+						{{shelfPhenotype.name}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+
+			<div *ngIf="genes === null && !noShelfValues; else hasNoGenes">
+				<mat-spinner class="loading-spinner"></mat-spinner>
+			</div>
+			<ng-template #hasNoGenes>
+				<div *ngIf="!genes || genes.length === 0; else hasGenes" class="no-genes-container">
+					<mat-icon class="error-icon">error_outline</mat-icon>
+				</div>
+			</ng-template>
+			<ng-template #hasGenes>
+				<mat-card *ngFor="let i of genes; let index = index" class="gene-card" [id]="'target-'+i.entrez">
+					<app-gene-name [gene]="i" [order]="index + 1" (click)="openGene(i.entrez, $event)">
+						<button mat-icon-button (click)="navigateTo(i, $event)">
+							<mat-icon color="primary">location_searching</mat-icon>
+						</button>
+					</app-gene-name>
+					<mat-card-actions>
+						<button mat-stroked-button color='primary' (click)="showPhenotypes(i)">
+							Show Related Phenotypes
+						</button>
+					</mat-card-actions>
+				</mat-card>
+			</ng-template>
+
+		</div>
+
+	</mat-tab>
+
+	<mat-tab label="All Genes" class="all-genes-tab-content">
+
+		<div style="width: 100%; overflow: hidden; word-wrap: break-word;">
+			<mat-form-field class="search-field">
+				<mat-icon matPrefix class="search-icon">search</mat-icon>
+				<input appAutofocus matInput class="search-input" placeholder="Enter search terms" name="searchFormControl"
+					ngDefaultControl [formControl]="searchFormControl">
+			</mat-form-field>
+
+			<mat-card *ngFor="let i of displayedGraphValues|async; let index = index" class="all-list-gene-card"
+				[id]="'target-'+i.entrez">
+				<app-gene-name [gene]="i" [order]="index + 1" (click)="openGene(i.entrez, $event)">
+					<button mat-icon-button (click)="navigateTo(i)">
+						<mat-icon color="primary">location_searching</mat-icon>
+					</button>
+				</app-gene-name>
+				<mat-card-actions>
+					<button mat-stroked-button color='primary' (click)="showPhenotypes(i)">
+						Show Related Phenotypes
+					</button>
+				</mat-card-actions>
+			</mat-card>
+
+		</div>
+
+	</mat-tab>
+</mat-tab-group>

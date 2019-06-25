@@ -1,0 +1,15 @@
+.name {
+  display: flex;
+  &-text {
+    padding-right: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+}
+
+.phenotype-chip-list {
+  margin-left: auto;
+  margin-top: -4px;
+}

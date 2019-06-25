@@ -1,0 +1,44 @@
+<mat-sidenav-container class="sidenav-container" [class.app-dark]="true">
+	<mat-sidenav
+		#drawer
+		class="sidenav"
+		fixedInViewport="true"
+		[attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+		[mode]="(isHandset$ | async) ? 'over' : 'side'"
+		[opened]="!(isHandset$ | async)">
+		<mat-nav-list>
+			<a mat-list-item [routerLink]="['/']" class="nav-link-a" routerLinkActive="active" [routerLinkActiveOptions]="{exact:
+		true}">
+				<mat-icon class="menu-icon">home</mat-icon>Home
+			</a>
+			<a mat-list-item [routerLink]="['/network']" class="nav-link-a" routerLinkActive="active">
+				<mat-icon class="menu-icon">grain</mat-icon>Network
+			</a>
+			<!--<a mat-list-item [routerLink]="['/cardigan']" class="nav-link-a" routerLinkActive="active">
+				<mat-icon class="menu-icon">graphic_eq</mat-icon>Cardigan
+			</a>-->
+			<a mat-list-item [routerLink]="['/about']" class="nav-link-a" routerLinkActive="active">
+				<mat-icon class="menu-icon">contact_support</mat-icon>About
+			</a>
+			<app-shelf><a mat-list-item class="nav-link-a open-shelf">
+					<mat-icon class="menu-icon">call_to_action</mat-icon>Open Shelf
+				</a></app-shelf>
+		</mat-nav-list>
+	</mat-sidenav>
+	<mat-sidenav-content class="content">
+		<mat-toolbar color="primary" class="nav-toolbar">
+			<button type="button" class="toggle-button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+				<mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+			</button>
+
+			<div class="logo-wrapper">
+				<div class="logo brand-name " [routerLink]="['/']"></div>
+			</div>
+
+
+		</mat-toolbar>
+		<div class="main-content">
+			<ng-content></ng-content>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>

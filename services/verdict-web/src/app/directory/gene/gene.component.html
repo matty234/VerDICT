@@ -1,0 +1,24 @@
+<span *ngIf="gene && !notFound; else notready" class="gene-cards">
+		<app-search-bar selectedSearchType="GENE" class="search-bar" [initialValue]="'*'+gene.entrez+' '+ gene.official_symbol">
+				<div class="actions">
+						<button (click)="addToGeneGroupInShelf()" mat-stroked-button color="accent"><mat-icon class="add-to-shelf-icon">add</mat-icon> Add to Shelf</button>
+						<button (click)="openNCBI()" mat-stroked-button color="primary"><mat-icon class="omim-link">open_in_new</mat-icon> Open in NCBI</button>
+						<button (click)="openKEGG()" mat-stroked-button color="primary"><mat-icon class="omim-link">open_in_new</mat-icon> Open in KEGG</button>
+				</div>
+		</app-search-bar>
+
+	<app-gene-belongs-to-phenotypes [gene]="selectedGene"></app-gene-belongs-to-phenotypes>
+	<div class="gene-cards">
+		<app-gene-interacts-with [gene]="selectedGene" class="gene-card"></app-gene-interacts-with>
+	</div>
+</span>
+<ng-template #notready>
+	<p class="not-ready-text" *ngIf="notFound; else loading">
+		Could not load this phenotype
+	</p>
+	<ng-template #loading>
+		<p class="not-ready-text">
+			Loading...
+		</p>
+	</ng-template>
+</ng-template>

@@ -1,0 +1,21 @@
+<div class="gene-name">
+	<app-gene-name [gene]="gene"></app-gene-name>
+</div>
+<p class="muted">{{(shelfGroupSelectables.length === 0) ?
+	'No gene groups contain '+gene.official_symbol:'Gene groups that contain '+gene.official_symbol+':'}}
+</p>
+<mat-nav-list *ngFor="let selectable of shelfGroupSelectables" class="list">
+	<a mat-list-item (click)="selectable.select()">
+		{{selectable.name}}
+	</a>
+</mat-nav-list>
+<mat-divider></mat-divider>
+<p class="muted">
+	{{(shelfGroupSecondarySelectables.length === 0) ?
+		'No gene neighbourhoods contain '+gene.official_symbol:'This gene appears in the neighbourhood for'+gene.official_symbol+':'}}
+</p>
+<mat-list *ngFor="let selectable of shelfGroupSecondarySelectables" class="list">
+	<mat-list-item>
+		{{selectable.name}}
+	</mat-list-item>
+</mat-list>

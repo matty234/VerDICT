@@ -1,0 +1,110 @@
+.name {
+  display: flex;
+  &-text {
+    padding-right: 7px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+  }
+}
+
+.related-phenotype {
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.not-ready-text {
+  text-align: center;
+  font-size: 13pt;
+}
+
+.phenotype-chip-list {
+  margin-left: auto;
+  margin-top: -4px;
+}
+
+.show-more-icon {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  font-size: 24pt;
+  top: -56px;
+  margin-top: 17px;
+  margin-bottom: -70px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, white 100%);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+
+  &-visual {
+    font-size: 24pt;
+  }
+}
+
+.phenotype-last {
+  color: #0000004f;
+}
+
+
+
+.phenotype-cards > .detail-card {
+	padding-bottom: 10px;
+	&-verticle {
+		display: block;
+		flex-direction: row;
+		>.card {
+			flex-grow: 1;
+		}
+	}
+}
+
+.related-detail-card {
+	padding-bottom: 10px !important;
+}
+
+
+.add-button {
+	color: #656565;
+	margin-top: -5px;
+	cursor: pointer;
+	outline: none;
+	padding-right: 5px;
+}
+
+.graph-card {
+	margin-right: 7px;
+	padding: 0;
+}
+.title {
+	display: flex;
+	flex-direction: row;
+}
+.title-text {
+	flex-grow: 1;
+}
+.add-mult-button {
+	margin-top: -7px;
+	margin-right: -5px;
+}
+.search-bar {
+	padding-bottom: 15px;
+	display: block;
+}
+.omim-link {
+	padding-right: 5px;
+}
+.actions {
+	width: auto;
+  white-space: nowrap;
+	padding: 10px;
+	display: flex;
+	overflow: auto;
+}
+.add-to-shelf-icon {
+	padding-bottom: 2px;
+}
+.add-to-shelf-button {
+	margin-right: 5px;
+}

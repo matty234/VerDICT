@@ -1,0 +1,18 @@
+<div [class.standalone]="entrez === -1">
+	<mat-form-field class="search-field" *ngIf="entrez === -1">
+		<mat-icon matPrefix class="search-icon">search</mat-icon>
+		<input appAutofocus matInput class="search-input" placeholder="Enter search terms" [formControl]="searchQuery">
+	</mat-form-field>
+
+	<mat-list *ngIf="!loading && kegs.length > 0" class="pathways-list">
+		<span *ngFor="let keg of kegs; let last = last">
+			<mat-list-item class="keg-list-item">
+				<button mat-icon-button color="accent" class="add-pathway-button" (click)="addPathway(keg)">
+					<mat-icon>save_alt</mat-icon>
+				</button>
+				{{keg.name}}
+			</mat-list-item>
+		</span>
+	</mat-list>
+	<mat-spinner [diameter]="25" class="loading-spinner" *ngIf="loading"></mat-spinner>
+</div>

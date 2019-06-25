@@ -1,0 +1,30 @@
+<mat-card>
+	<mat-card-title>
+		Add To Shelf Gene Group
+	</mat-card-title>
+	<mat-card-content>
+		<p>
+			Select a pathway that this gene belongs to:
+		</p>
+		<app-pathways [entrez]="gene.entrez" (complete)="onPathwaySelected()"></app-pathways>
+		<p>
+			Or select an existing gene group to add this to:
+		</p>
+		<mat-form-field class="full-width-input">
+			<mat-select [(ngModel)]="selectedUID">
+				<mat-option (click)="createNewGeneGroup($event)">
+					<i>Create new gene group</i>
+				</mat-option>
+				<mat-divider></mat-divider>
+				<mat-option *ngFor="let shelfValue of shelfValues" [value]="shelfValue.uid">
+					{{shelfValue.name}}
+				</mat-option>
+
+			</mat-select>
+
+		</mat-form-field>
+	</mat-card-content>
+	<mat-card-actions class="actions">
+		<button mat-flat-button (click)="addToGroup()" color="primary">Add to Gene Group</button>
+	</mat-card-actions>
+</mat-card>

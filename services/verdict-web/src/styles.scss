@@ -1,0 +1,52 @@
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
+html, body { height: 100%; background-color: #424242; }
+body { margin: 0; font-family: 'Roboto', sans-serif; }
+
+.shelf-overlay {
+	width: 100%;
+}
+.mat-card-header-text {
+	width: 100%;
+}
+.fab {
+	position: fixed !important;
+	bottom: 20px;
+	right: 20px;
+}
+
+
+// Animation
+@keyframes placeHolderShimmer{
+	0%{
+			background-position: -468px 0
+	}
+	100%{
+			background-position: 468px 0
+	}
+}
+
+.animated-placeholder-background {
+	animation-duration: 1.25s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-name: placeHolderShimmer;
+	animation-timing-function: linear;
+	background: #F6F6F6;
+	background: linear-gradient(to right, #F6F6F6 8%, #F0F0F0 18%, #F6F6F6 33%);
+	background-size: 800px 104px;
+	height: 96px;
+	position: relative;
+}
+
+
+.text-placeholder-line {
+  height: 10px;
+	height: 23px;
+	width: 400px;
+	max-width: 100%;
+	margin: 4px 0;
+  @extend .animated-placeholder-background;
+}
+
+

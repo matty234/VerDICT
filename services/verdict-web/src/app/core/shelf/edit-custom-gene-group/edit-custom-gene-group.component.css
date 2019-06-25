@@ -1,0 +1,10 @@
+.edit-gene-group-card {
+	width: 100%;
+}
+:host {
+	width: 100%;
+}
+.gene-names {
+	height: 300px;
+	overflow: auto;
+}

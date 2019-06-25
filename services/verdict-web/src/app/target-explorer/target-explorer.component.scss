@@ -1,0 +1,90 @@
+:host {
+	margin-bottom: 10px;
+		::ng-deep.mat-list-item-content {
+			padding: 0px !important;
+		}
+		::ng-deep {
+			.mat-tab-label {
+				flex-grow: 1;
+			}
+		}
+}
+
+.phenotypeColorHint {
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	border-radius: 9px;
+	margin-right: 7px;
+	vertical-align: middle;
+}
+.chip-list {
+  margin-left: auto;
+	margin-top: 4px;
+}
+.gene-card  {
+	&:first-of-type {
+		margin-top: -10px !important;
+	}
+}
+
+.grid {
+	display: grid;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	grid-template-columns: minmax(50%, 1fr);
+	//	margin-right: 10px;
+	margin-bottom: 20px;
+}
+
+.all-list-gene-card {
+	margin-bottom: 10px;
+}
+
+.intro-card {
+	margin-bottom: 10px;
+	.title {
+		word-wrap: normal;
+		white-space: normal;
+	}
+	.intro {
+		word-wrap: normal;
+		white-space: normal;
+	}
+}
+.phenotype-name {
+	font-size: 10pt !important;
+}
+.loading-spinner {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
+.no-genes-container{
+ text-align: center;
+}
+.error-icon {
+	font-size: 40pt;
+	color: #ababab;
+}
+
+
+.search-field {
+	padding-top: 10px;
+	width: 100%;
+}
+
+.search-input {
+	font-size: 12pt;
+	padding-bottom: 4px;
+	padding-left: 4px;
+}
+
+.search-icon {
+	font-size: 14pt;
+	padding-right: 5px;
+}
+
+.all-genes-tab-content {
+	overflow: hidden;
+}
+

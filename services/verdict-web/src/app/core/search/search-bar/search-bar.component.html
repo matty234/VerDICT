@@ -1,0 +1,17 @@
+<div #searchField class="search-field " [class.mat-elevation-z2]="true">
+	<span class="search-always" #searchAlways>
+			<mat-form-field class="md-block search-field">
+					<mat-icon matPrefix class="search-icon">search</mat-icon>
+					<input matInput #searchInput class="search-input" [formControl]="searchTerm" (click)="barFocus()">
+				</mat-form-field>
+				<div class="search-types">
+					<div *ngFor="let sType of searchTypes" [class.selected]="sType.id === selectedSearchType" class="search-type"
+						(click)="selectSearchType(sType)" tabindex="0" matRipple>
+						{{sType.name}}</div>
+				</div>
+	</span>
+
+	<div #searchExtras>
+		<ng-content></ng-content>
+	</div>
+</div>

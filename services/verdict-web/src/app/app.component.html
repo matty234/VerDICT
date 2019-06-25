@@ -1,0 +1,12 @@
+<ng-container>
+	<div *ngIf="!(isOnline$ | async)" class="offline-wrapper">
+		<div class="offline">
+			<h1>You are offline</h1>
+			VerDICT is not accessible offline. Please reconnect to resume use.
+		</div>
+	</div>
+	<app-query-loading-bar></app-query-loading-bar>
+	<app-nav>
+		<router-outlet></router-outlet>
+	</app-nav>
+</ng-container>

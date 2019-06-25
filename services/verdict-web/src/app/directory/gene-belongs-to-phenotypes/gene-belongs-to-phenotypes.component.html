@@ -1,0 +1,6 @@
+<app-expandable-table title="Belongs To" [items]="$phenotypes" type="phenotype" loadingOnRouteChange="true">
+	<ng-container *appPhenotypeItem="let item">
+		<app-phenotype-name [phenotype]="item" >
+		</app-phenotype-name>
+	</ng-container>
+</app-expandable-table>

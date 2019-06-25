@@ -1,0 +1,32 @@
+<mat-card class="shelfConfigItems">
+	<div>
+		<app-colour-picker-overlay [formControl]="shelfValue.get('colour')"></app-colour-picker-overlay>
+	</div>
+	<div>
+		<mat-form-field class="input-fw">
+			<input matInput placeholder="Item Name" type="text" [formControl]="shelfValue.get('name')">
+		</mat-form-field>
+	</div>
+	<div *ngIf="shelfValue.get('minScore')">
+		<mat-form-field class="input-fw">
+			<input matInput placeholder="Minimum Weight" type="number" [formControl]="shelfValue.get('minScore')">
+		</mat-form-field>
+	</div>
+	<div *ngIf="shelfValue.get('limit')">
+		<mat-form-field class="input-fw">
+			<input matInput placeholder="Gene Set Limit" type="number" [formControl]="shelfValue.get('limit')">
+			<mat-hint>Maximum number of genes to load from the gene set</mat-hint>
+		</mat-form-field>
+	</div>
+	<div *ngIf="shelfValue.get('geneSet')">
+		<mat-form-field class="input-fw">
+			<mat-label>Gene Set</mat-label>
+			<mat-select [formControl]="shelfValue.get('geneSet')" class="input-fw">
+				<mat-option value="PREDICTED_INTERACTION">Cardigan Predictions</mat-option>
+				<mat-option value="HAS_GENE">Known Genes</mat-option>
+			</mat-select>
+			<mat-hint>Source of the displayed genes</mat-hint>
+
+		</mat-form-field>
+	</div>
+</mat-card>

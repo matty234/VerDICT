@@ -1,0 +1,11 @@
+<div>
+	<app-expandable-table [title]="shelfValue.name" [items]="genes" type="gene">
+		<ng-container *appGeneItem="let item">
+			<app-gene-name [gene]="item">
+				<button mat-button color="primary" class="delete-button" (click)="delete(item.entrez, $event)" mat-icon-button>
+					<mat-icon>delete</mat-icon>
+				</button>
+			</app-gene-name>
+		</ng-container>
+	</app-expandable-table>
+</div>

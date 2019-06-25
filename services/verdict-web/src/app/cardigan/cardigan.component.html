@@ -1,0 +1,27 @@
+<div class="wrapper">
+	<mat-card class="detail-card">
+		<mat-card-title>Cardigan</mat-card-title>
+		<mat-card-content>
+			The Cardigan gene prediction method utilises the existing Caniza disease similarity research function to predict
+			target genes for inherited conditions.
+		</mat-card-content>
+	</mat-card>
+	<mat-card class="detail-card" *ngIf="names.length != 0; else shelfEmpty">
+		<mat-card-content>Finding intersection of Cardigan entries for:
+			<span *ngFor="let name of names; let last = last">{{name | appPhenotypeName}}{{!last ? ', ' : ''}}</span>
+		</mat-card-content>
+		<mat-list *ngIf="genes.length > 0">
+			<span *ngFor="let gene of genes; let last = last">
+				<mat-list-item>
+					<app-gene-name [gene]="gene"></app-gene-name>
+				</mat-list-item>
+				<mat-divider *ngIf="!last"></mat-divider>
+			</span>
+		</mat-list>
+	</mat-card>
+	<ng-template #shelfEmpty>
+		<mat-card>
+			Please add an item to the shelf to find the Cardigan intersection.
+		</mat-card>
+	</ng-template>
+</div>

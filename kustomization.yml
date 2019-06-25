@@ -1,0 +1,28 @@
+commonLabels:
+  app: verdict
+resources:
+  - deployment/ing.yml
+  - deployment/namespace.yml
+
+  - deployment/search-proxy/deployment.yml
+  - deployment/search-proxy/svc.yml
+  
+  - deployment/diseases/deployment.yml
+  - deployment/diseases/svc.yml
+  
+  - deployment/genes/deployment.yml
+  - deployment/genes/svc.yml
+
+  - deployment/graph/deployment.yml
+  - deployment/graph/svc.yml
+
+  - deployment/web/deployment.yml
+  - deployment/web/svc.yml
+
+  - deployment/db/deployment.yml
+  - deployment/db/svc.yml
+
+  - deployment/es/deployment.yml
+  - deployment/es/svc.yml
+  
+namespace: verdict

@@ -1,0 +1,23 @@
+.search-bar {
+	padding-bottom: 15px;
+	display: block;
+}
+.actions {
+	padding: 10px;
+	> button {
+		margin-right: 5px;
+	}
+	width: auto;
+  white-space: nowrap;
+	display: flex;
+	overflow: auto;
+}
+.add-to-shelf-icon {
+	padding-bottom: 2px;
+}
+.add-to-shelf-button {
+	margin-right: 5px;
+}
+a {
+	text-transform: uppercase;
+}

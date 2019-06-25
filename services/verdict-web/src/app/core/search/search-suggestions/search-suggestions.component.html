@@ -1,0 +1,26 @@
+<mat-list class="list">
+	<ng-container *ngIf="!isLoading; else loading">
+		<ng-container *ngFor="let item of searchResults; let last = last">
+			<ng-container *ngIf="item.type !== 'PATHWAY'; else pathwayResult">
+				<mat-list-item matRipple class="item" (click)="toItem(item)" tabindex="1">
+					<span class="muted symbol">{{(item.entrez)? '*'+item.entrez : '#'+item.omim }}</span>
+					{{ (item.name) ? (item.name[0]) : item.official_symbol}}
+				</mat-list-item>
+			</ng-container>
+			<ng-template #pathwayResult>
+				<mat-list-item class="item" (click)="toItem(item)" tabindex="1">
+					<span class="muted symbol">KEGG</span> {{item.name}}
+				</mat-list-item>
+			</ng-template>
+
+			<mat-divider *ngIf="!last"></mat-divider>
+		</ng-container>
+	</ng-container>
+
+	<ng-template #loading>
+		<div class="is-loading">
+			<mat-spinner diameter="50" class="is-loading-spinner"></mat-spinner>
+		</div>
+
+	</ng-template>
+</mat-list>

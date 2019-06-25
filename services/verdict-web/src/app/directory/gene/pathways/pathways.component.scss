@@ -1,0 +1,41 @@
+:host {
+	::ng-deep .mat-list-item-content {
+		padding-left: 0px !important;
+
+	}
+}
+
+.standalone {
+	background-color: white;
+	display: block;
+	position: relative;
+	padding: 16px;
+	border-radius: 4px;
+}
+
+.pathways-list {
+	max-height: 300px !important;
+	display: block !important;
+	overflow: scroll !important;
+}
+
+
+.loading-spinner {
+	margin-left: auto;
+	margin-right: auto;
+	padding: 6px 0;
+}
+
+.add-pathway-button {
+	margin-top: -4px;
+}
+
+.search-input {
+	font-size: 12pt;
+	padding-bottom: 4px;
+	padding-left: 4px;
+}
+
+.search-field {
+	width: 100%;
+}

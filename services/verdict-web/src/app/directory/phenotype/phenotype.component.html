@@ -1,0 +1,64 @@
+<span *ngIf="phenotype && !notFound; else notready" class="phenotype-cards">
+
+	<app-search-bar selectedSearchType="PHENOTYPE" class="search-bar"
+		[initialValue]="'#'+phenotype.omim+' '+ (phenotype.name|appPhenotypeName)">
+		<div class="actions">
+			<app-shelf *ngIf="phenotype.shelfValue" [value]="phenotype.shelfValue"><button class="add-to-shelf-button"
+					mat-stroked-button color="accent">
+					<mat-icon class="add-to-shelf-icon">add</mat-icon> Add to Shelf
+				</button></app-shelf>
+			<button (click)="openOmim()" mat-stroked-button color="primary">
+				<mat-icon class="omim-link">open_in_new</mat-icon> Open in OMIM
+			</button>
+		</div>
+	</app-search-bar>
+
+	<div class="detail-card detail-card-verticle related-detail-card">
+		<app-expandable-table title="Related Conditions" [items]="related" type="phenotype" loadingOnRouteChange="true">
+			<ng-container *appTitleButtons>
+				<app-add-multiple-shelf-dialog-button class="add-mult-button" [id]="phenotype.omim">
+					Add Multiple
+				</app-add-multiple-shelf-dialog-button>
+			</ng-container>
+			<ng-container *appPhenotypeItem="let item">
+				<app-phenotype-name [phenotype]="item">
+					<mat-chip-list class="phenotype-chip-list">
+						<mat-chip color="secondary">{{((item.score) | number:'1.3-3')}}</mat-chip>
+					</mat-chip-list>
+				</app-phenotype-name>
+			</ng-container>
+		</app-expandable-table>
+	</div>
+
+	<div class="detail-card">
+		<app-expandable-table title="Related Genes" [items]="genes" type="gene" loadingOnRouteChange="true">
+			<ng-container *appGeneItem="let item">
+				<app-gene-name [gene]="item">
+				</app-gene-name>
+			</ng-container>
+		</app-expandable-table>
+	</div>
+
+
+	<div class="detail-card">
+		<app-expandable-table title="Cardigan Predicted Genes" [items]="cardiganPredictions" loadingOnRouteChange="true">
+			<ng-container *appGeneItem="let item">
+				<app-gene-name [gene]="item">
+					<mat-chip-list class="">
+						<mat-chip color="secondary">{{((item.score) | number:'1.3-3')}}</mat-chip>
+					</mat-chip-list>
+				</app-gene-name>
+			</ng-container>
+		</app-expandable-table>
+	</div>
+</span>
+<ng-template #notready>
+	<p class="not-ready-text" *ngIf="notFound; else loading">
+		Could not load this phenotype
+	</p>
+	<ng-template #loading>
+		<p class="not-ready-text">
+			Loading...
+		</p>
+	</ng-template>
+</ng-template>

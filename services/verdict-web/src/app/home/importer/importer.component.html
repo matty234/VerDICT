@@ -1,0 +1,74 @@
+<mat-card class="stepper-card">
+	<mat-card-title>Import Genes</mat-card-title>
+	<mat-vertical-stepper #stepper [linear]="false">
+
+		<mat-step state="select" [editable]="false">
+			<ng-template matStepLabel>Select Import Source</ng-template>
+			<mat-list>
+				<mat-list-item class="import-button" (click)="chooseImport(importChoices.KEGG)">
+					Import KEGG Pathway
+					<mat-icon class="import-button-arrow-right">
+						keyboard_arrow_right
+					</mat-icon>
+				</mat-list-item>
+				<mat-divider></mat-divider>
+				<mat-list-item class="import-button" (click)="chooseImport(importChoices.CSV)">
+					Import CSV
+					<mat-icon class="import-button-arrow-right">
+						keyboard_arrow_right
+					</mat-icon>
+				</mat-list-item>
+				<mat-divider></mat-divider>
+				<mat-list-item class="import-button" (click)="chooseImport(importChoices.EXAMPLE)">
+					Add Examples
+					<mat-icon class="import-button-arrow-right">
+						keyboard_arrow_right
+					</mat-icon>
+				</mat-list-item>
+			</mat-list>
+		</mat-step>
+
+		<mat-step state="import" [editable]="false">
+			<ng-template matStepLabel>Import Genes</ng-template>
+			<div class="import-view">
+				<ng-container [ngSwitch]="importType">
+					<app-pathways *ngSwitchCase="importChoices.KEGG" (complete)="onComplete($event)"></app-pathways>
+					<app-csv-import *ngSwitchCase="importChoices.CSV" (complete)="onComplete($event)"></app-csv-import>
+					<!--<app-example-quick-start *ngSwitchCase="importChoices.EXAMPLE" (complete)="onComplete($event)"></app-example-quick-start>-->
+				</ng-container>
+			</div>
+
+			<button mat-stroked-button color="primary" (click)="stepper.reset()">
+				<mat-icon>keyboard_arrow_left</mat-icon>Back
+			</button>
+		</mat-step>
+
+
+		<mat-step state="complete" [editable]="false">
+			<ng-template matStepLabel>Complete Import</ng-template>
+			<div class="finished-container">
+				<mat-icon class="finished-container-icon">check_circle_outline</mat-icon>
+				<div>
+					Import completed
+				</div>
+				<div class="result-string">{{getResultString()}}</div>
+			</div>
+			<div>
+				<button mat-stroked-button color="primary" (click)="stepper.reset()">
+					<mat-icon>replay</mat-icon>Start Again
+				</button>
+			</div>
+		</mat-step>
+
+		<ng-template matStepperIcon="select">
+			<mat-icon>list</mat-icon>
+		</ng-template>
+		<ng-template matStepperIcon="import">
+			<mat-icon>cloud_download</mat-icon>
+		</ng-template>
+		<ng-template matStepperIcon="complete">
+			<mat-icon>check</mat-icon>
+		</ng-template>
+
+	</mat-vertical-stepper>
+</mat-card>

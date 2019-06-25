@@ -1,0 +1,5 @@
+
+	<div class="default-colours">
+		<div *ngFor="let defaultColour of defaultColours" (click)="customValue = defaultColour" tabindex="0"
+		 [style.backgroundColor]="'#'+defaultColour" [class.selected]="customValue === defaultColour"></div>
+	</div>

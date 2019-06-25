@@ -1,0 +1,22 @@
+<div class="wrapper" #wrapper [class.wrapper-graph]="showOnlyGraph">
+	<div class="graph" #graph (dblclick)="toggleSideBar()"></div>
+	<div class="sidebar" >
+		<app-target-explorer class="target-explorer" [graphValues]="graphValues"></app-target-explorer>
+		<mat-card class="settings-card">
+			<div class="degrees">
+				<div class="degrees-title">PPI Network Depth</div>
+				<mat-card-content class="degrees-info">Currently displaying {{degreesToShow}}
+					{{degreesToShow === 1 ? 'neighbour': 'neighbours'}}.</mat-card-content>
+				<mat-slider class="degrees-slider" [max]="3" [min]="0" [step]="1" [thumbLabel]="true" [tickInterval]="1"
+					[(ngModel)]="degreesToShow">
+				</mat-slider>
+			</div>
+			<div class="shortestPaths">
+				<mat-slide-toggle [(ngModel)]="showShortestPaths" color="accent">Show Shortest Paths Between Predictions
+				</mat-slide-toggle>
+			</div>
+		</mat-card>
+	</div>
+</div>
+
+

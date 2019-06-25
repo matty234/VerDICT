@@ -1,0 +1,62 @@
+<div class="table-container">
+	<mat-card class="gene-card">
+		<mat-card-title>
+			{{title}}
+			<ng-container *ngTemplateOutlet="titleButtonsTemplate"></ng-container>
+		</mat-card-title>
+		<mat-list class="list">
+			<ng-container [ngSwitch]="type" *ngIf="!isLoading; else loading">
+				<ng-container *ngSwitchCase="'phenotype'">
+					<ng-container *ngFor="let item of (isShowingMore)?items:itemsShort; let last = last">
+						<mat-list-item class="item" matRipple (click)="open('PHENOTYPE', item.omim, $event)">
+							<ng-container *ngTemplateOutlet="phenotypeItemTemplate; context: {$implicit: item}"></ng-container>
+						</mat-list-item>
+						<mat-divider *ngIf="!last"></mat-divider>
+					</ng-container>
+				</ng-container>
+				<ng-container *ngSwitchCase="'gene'">
+					<ng-container *ngFor="let item of (isShowingMore)?items:itemsShort; let last = last">
+						<mat-list-item class="item" matRipple (click)="open('GENE', item.entrez, $event)">
+							<ng-container *ngTemplateOutlet="geneItemTemplate; context: {$implicit: item}"></ng-container>
+						</mat-list-item>
+						<mat-divider *ngIf="!last"></mat-divider>
+					</ng-container>
+				</ng-container>
+			</ng-container>
+			<ng-template #loading>
+
+				<mat-list-item>
+							<div class="text-placeholder-line"></div>
+					<mat-divider></mat-divider>
+				</mat-list-item>
+				<mat-list-item>
+						<div class="text-placeholder-line"></div>
+					<mat-divider></mat-divider>
+				</mat-list-item>
+				<mat-list-item>
+						<div class="text-placeholder-line"></div>
+					<mat-divider></mat-divider>
+				</mat-list-item>
+				<mat-list-item class="final-loading">
+						<div class="text-placeholder-line"></div>
+				</mat-list-item>
+
+			</ng-template>
+			<div class="show-more-icon" *ngIf="!isShowingMore && !isLoading" (click)="showMore()">
+				<mat-icon class="show-more-icon-visual">expand_more</mat-icon>
+			</div>
+			<div *ngIf="items.length === 0 && !isLoading" class="muted">
+				No
+				<ng-container [ngSwitch]="type">
+					<ng-container *ngSwitchCase="'phenotype'">
+						phenotypes
+					</ng-container>
+					<ng-container *ngSwitchCase="'gene'">
+						genes
+					</ng-container>
+				</ng-container>
+				found.
+			</div>
+		</mat-list>
+	</mat-card>
+</div>

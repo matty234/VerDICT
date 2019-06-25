@@ -1,0 +1,7 @@
+<app-expandable-table title="Related Genes" [items]="genes" type="genes">
+		<ng-container *appGeneItem="let item">
+			<app-gene-name [gene]="item">
+			</app-gene-name>
+		</ng-container>
+	</app-expandable-table>
+

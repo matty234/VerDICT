@@ -1,0 +1,20 @@
+.default-colours {
+	display: flex;
+	flex-direction: row;
+	height: 25px;
+
+	> div {
+		margin: auto 3px;
+		width: 20px;
+		cursor: pointer;
+		height: 20px;
+		flex-grow: 1;
+		border-radius: 3px;
+		border: 0px solid #000000e6;
+		outline: none;
+
+	}
+}
+.selected {
+	box-shadow: 0px 3px 9px 2px #00000069;
+}

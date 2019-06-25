@@ -1,0 +1,16 @@
+<mat-card>
+	<mat-card-title>
+		Add Multiple
+	</mat-card-title>
+	<mat-card-content>
+		<p>
+			Select the number of related conditions to add to the shelf based minimum weight threshold.
+		</p>
+		<mat-form-field class="full-width-input">
+			<input matInput placeholder="Threshold Weight" [(ngModel)]="limit" type="number" value="10">
+		</mat-form-field>
+	</mat-card-content>
+	<mat-card-actions class="actions">
+		<button mat-flat-button color="primary" (click)="add()">Add</button>
+	</mat-card-actions>
+</mat-card>
