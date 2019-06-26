@@ -10,12 +10,12 @@ import {
 	OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
-import { filter, finalize, switchMap, takeUntil } from 'rxjs/operators';
+import { concat, forkJoin, Observable, Subject } from 'rxjs';
+import { distinctUntilChanged, filter, finalize, flatMap, map, mergeMap, switchMap, takeUntil } from 'rxjs/operators';
 import { Gene } from 'src/app/directory/gene/gene.model';
 import { Phenotype } from 'src/app/directory/phenotype/phenotype.model';
 
-import { ISearchQuery } from '../search-bar/search-bar.component';
+import { ISearchQuery, SearchIDs } from '../search-bar/search-bar.component';
 import { SearchResult, SearchResults } from '../search.model';
 import { SearchService } from '../search.service';
 
@@ -33,9 +33,8 @@ export class SearchSuggestionsComponent implements OnInit, OnDestroy {
 	$destroy = new Subject<void>();
 	isLoading = false;
 	searchResults: SearchResults = [];
-
 	constructor(
-		@Inject(SEARCH_QUERY) private query: Observable<ISearchQuery>,
+		@Inject(SEARCH_QUERY) public query: Observable<ISearchQuery>,
 		private searchService: SearchService,
 		private elementRef: ElementRef,
 		private router: Router,
@@ -62,6 +61,10 @@ export class SearchSuggestionsComponent implements OnInit, OnDestroy {
 				this.searchResults = results;
 				this.cd.detectChanges();
 			});
+
+		this.query.pipe(map((q: ISearchQuery) => q.typeId), distinctUntilChanged()).subscribe(() => {
+			this.searchResults = [];
+		});
 	}
 
 	@HostListener('document:click', [ '$event' ])

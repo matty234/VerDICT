@@ -1,3 +1,6 @@
+<div *ngIf="(query | async).typeId === 'PATHWAY'" class="kegg-description muted">
+	Loading results from <div class="kegg-logo"></div>...
+</div>
 <mat-list class="list">
 	<ng-container *ngIf="!isLoading; else loading">
 		<ng-container *ngFor="let item of searchResults; let last = last">

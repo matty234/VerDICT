@@ -6,7 +6,7 @@
 export const environment = {
 	production: false,
 	api: {
-		root: 'https://cors-anywhere.herokuapp.com/https://uks.verdict.genericname.dev/__',
+		root: 'https://cors-anywhere.herokuapp.com/https://verdict.paccanarolab.org/__',
 		phenotype: 'phenotype',
 		gene: 'gene',
 		search: 'search',

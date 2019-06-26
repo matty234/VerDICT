@@ -11,10 +11,10 @@ metadata:
 spec:
     tls:
         - hosts:
-          - uks.verdict.genericname.dev
+          - verdict.paccanarolab.org
           secretName: letsencrypt-prod
     rules:
-        - host: 'uks.verdict.genericname.dev'
+        - host: 'verdict.paccanarolab.org'
           http:
                 paths:
                     -
