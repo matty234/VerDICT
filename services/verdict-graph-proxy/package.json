@@ -20,7 +20,7 @@
   "dependencies": {
     "connect": "^3.7.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "neo4j-driver": "^1.7.5",
     "rxjs": "^6.5.2"
   },
